@@ -14,21 +14,17 @@ class Calculator {
         this.history = [];
         
         this.initializeButtons();
+        this.initializeKeyboard();
         this.updateDisplay();
     }
     
     initializeButtons() {
         for (let i = 0; i <= 9; i++) {
             const btn = document.getElementById(i === 0 ? 'zero' : ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'][i - 1]);
-            if (btn) {
-                btn.addEventListener('click', () => this.inputNumber(i.toString()));
-            }
+            btn.addEventListener('click', () => this.inputNumber(i.toString()));
         }
         
-        const decimalBtn = document.getElementById('decimal');
-        if (decimalBtn) {
-            decimalBtn.addEventListener('click', () => this.inputDecimal());
-        }
+        document.getElementById('decimal').addEventListener('click', () => this.inputDecimal());
         
         document.getElementById('add').addEventListener('click', () => this.setOperation('+'));
         document.getElementById('subtract').addEventListener('click', () => this.setOperation('-'));
@@ -46,6 +42,50 @@ class Calculator {
         document.getElementById('mMinus').addEventListener('click', () => this.memorySubtract());
         
         this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
+    }
+    
+    initializeKeyboard() {
+        document.addEventListener('keydown', (e) => {
+            if (this.isCalculatorKey(e.key)) {
+                e.preventDefault();
+            }
+            
+            if (e.key >= '0' && e.key <= '9') {
+                this.inputNumber(e.key);
+            }
+            
+            if (e.key === '.' || e.key === ',') {
+                this.inputDecimal();
+            }
+            
+            if (e.key === '+') {
+                this.setOperation('+');
+            } else if (e.key === '-') {
+                this.setOperation('-');
+            } else if (e.key === '*') {
+                this.setOperation('×');
+            } else if (e.key === '/') {
+                this.setOperation('÷');
+            }
+            
+            if (e.key === 'Enter' || e.key === '=') {
+                this.calculate();
+            }
+            
+            if (e.key === 'Escape') {
+                this.clear();
+            }
+            
+            if (e.key === 'Backspace') {
+                this.clearEntry();
+            }
+        });
+    }
+    
+    isCalculatorKey(key) {
+        const calculatorKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+                               '.', ',', '+', '-', '*', '/', '=', 'Enter', 'Escape', 'Backspace'];
+        return calculatorKeys.includes(key);
     }
     
     inputNumber(num) {
@@ -251,3 +291,4 @@ class Calculator {
 document.addEventListener('DOMContentLoaded', () => {
     new Calculator();
 });
+

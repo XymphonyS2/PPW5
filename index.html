@@ -28,6 +28,7 @@
             background-size: 400% 400%;
         }
     </style>
+    
 </head>
 <body class="h-screen w-screen overflow-hidden flex items-center justify-center p-4">
     <div class="w-full max-w-xs">
@@ -38,23 +39,30 @@
             </div>
             
             <div class="grid grid-cols-4 gap-2">
-                <div class="col-span-4 h-12"></div>
-                <div class="col-span-4 h-12"></div>
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs py-3 px-2 font-medium cursor-pointer transition-all shadow-md btn memory-btn" id="mc">MC</button>
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs py-3 px-2 font-medium cursor-pointer transition-all shadow-md btn memory-btn" id="mr">MR</button>
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs py-3 px-2 font-medium cursor-pointer transition-all shadow-md btn memory-btn" id="mPlus">M+</button>
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs py-3 px-2 font-medium cursor-pointer transition-all shadow-md btn memory-btn" id="mMinus">M-</button>
+                
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn" id="ce">CE</button>
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn" id="c">C</button>
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-xl py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn" id="divide">÷</button>
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-xl py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn" id="multiply">×</button>
                 
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="seven">7</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="eight">8</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="nine">9</button>
-                <div></div>
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-xl py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn" id="subtract">-</button>
                 
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="four">4</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="five">5</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="six">6</button>
-                <div></div>
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-xl py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn" id="add">+</button>
                 
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="one">1</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="two">2</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="three">3</button>
-                <div class="row-span-2"></div>
+                <button class="bg-primary-blue hover:bg-blue-700 text-white rounded-lg text-xl py-3 font-medium cursor-pointer transition-all shadow-md btn operator-btn equals-btn row-span-2" id="equals">=</button>
                 
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn zero-btn col-span-2" id="zero">0</button>
                 <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="decimal">.</button>

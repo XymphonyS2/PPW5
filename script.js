@@ -25,6 +25,21 @@ class Calculator {
         if (decimalBtn) {
             decimalBtn.addEventListener('click', () => this.inputDecimal());
         }
+        
+        document.getElementById('add').addEventListener('click', () => this.setOperation('+'));
+        document.getElementById('subtract').addEventListener('click', () => this.setOperation('-'));
+        document.getElementById('multiply').addEventListener('click', () => this.setOperation('×'));
+        document.getElementById('divide').addEventListener('click', () => this.setOperation('÷'));
+        
+        document.getElementById('equals').addEventListener('click', () => this.calculate());
+        
+        document.getElementById('c').addEventListener('click', () => this.clear());
+        document.getElementById('ce').addEventListener('click', () => this.clearEntry());
+        
+        document.getElementById('mc').addEventListener('click', () => this.memoryClear());
+        document.getElementById('mr').addEventListener('click', () => this.memoryRecall());
+        document.getElementById('mPlus').addEventListener('click', () => this.memoryAdd());
+        document.getElementById('mMinus').addEventListener('click', () => this.memorySubtract());
     }
     
     inputNumber(num) {
@@ -45,6 +60,100 @@ class Calculator {
             this.currentValue += '.';
         }
         this.updateDisplay();
+    }
+    
+    setOperation(op) {
+        if (this.previousValue !== null && !this.waitingForNewValue) {
+            this.calculate();
+        }
+        
+        this.previousValue = parseFloat(this.currentValue);
+        this.operation = op;
+        this.waitingForNewValue = true;
+    }
+    
+    calculate() {
+        if (this.previousValue === null || this.operation === null) {
+            return;
+        }
+        
+        const current = parseFloat(this.currentValue);
+        let result;
+        
+        try {
+            switch (this.operation) {
+                case '+':
+                    result = this.previousValue + current;
+                    break;
+                case '-':
+                    result = this.previousValue - current;
+                    break;
+                case '×':
+                    result = this.previousValue * current;
+                    break;
+                case '÷':
+                    if (current === 0) {
+                        throw new Error('Pembagian dengan nol tidak diperbolehkan');
+                    }
+                    result = this.previousValue / current;
+                    break;
+                default:
+                    return;
+            }
+            
+            result = Math.round(result * 100000000) / 100000000;
+            
+            this.currentValue = result.toString();
+            this.previousValue = null;
+            this.operation = null;
+            this.waitingForNewValue = true;
+            this.updateDisplay();
+        } catch (error) {
+            this.displayError(error.message);
+        }
+    }
+    
+    clear() {
+        this.currentValue = '0';
+        this.previousValue = null;
+        this.operation = null;
+        this.waitingForNewValue = false;
+        this.updateDisplay();
+    }
+    
+    clearEntry() {
+        this.currentValue = '0';
+        this.waitingForNewValue = false;
+        this.updateDisplay();
+    }
+    
+    memoryClear() {
+        this.memory = 0;
+        this.updateMemoryIndicator();
+    }
+    
+    memoryRecall() {
+        this.currentValue = this.memory.toString();
+        this.waitingForNewValue = false;
+        this.updateDisplay();
+    }
+    
+    memoryAdd() {
+        this.memory += parseFloat(this.currentValue);
+        this.updateMemoryIndicator();
+    }
+    
+    memorySubtract() {
+        this.memory -= parseFloat(this.currentValue);
+        this.updateMemoryIndicator();
+    }
+    
+    updateMemoryIndicator() {
+        if (this.memory !== 0) {
+            this.memoryIndicator.classList.add('active');
+        } else {
+            this.memoryIndicator.classList.remove('active');
+        }
     }
     
     updateDisplay() {
@@ -72,6 +181,18 @@ class Calculator {
             maximumFractionDigits: 10,
             useGrouping: false
         });
+    }
+    
+    displayError(message) {
+        this.display.textContent = message;
+        this.currentValue = '0';
+        this.previousValue = null;
+        this.operation = null;
+        this.waitingForNewValue = false;
+        
+        setTimeout(() => {
+            this.updateDisplay();
+        }, 3000);
     }
 }
 

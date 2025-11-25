@@ -2,12 +2,16 @@ class Calculator {
     constructor() {
         this.display = document.getElementById('display');
         this.memoryIndicator = document.getElementById('memoryIndicator');
+        this.historyPanel = document.getElementById('historyPanel');
+        this.historyList = document.getElementById('historyList');
+        this.clearHistoryBtn = document.getElementById('clearHistoryBtn');
         
         this.currentValue = '0';
         this.previousValue = null;
         this.operation = null;
         this.waitingForNewValue = false;
         this.memory = 0;
+        this.history = [];
         
         this.initializeButtons();
         this.updateDisplay();
@@ -40,6 +44,8 @@ class Calculator {
         document.getElementById('mr').addEventListener('click', () => this.memoryRecall());
         document.getElementById('mPlus').addEventListener('click', () => this.memoryAdd());
         document.getElementById('mMinus').addEventListener('click', () => this.memorySubtract());
+        
+        this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
     }
     
     inputNumber(num) {
@@ -79,6 +85,7 @@ class Calculator {
         
         const current = parseFloat(this.currentValue);
         let result;
+        const expression = `${this.previousValue} ${this.operation} ${current}`;
         
         try {
             switch (this.operation) {
@@ -102,6 +109,8 @@ class Calculator {
             }
             
             result = Math.round(result * 100000000) / 100000000;
+            
+            this.addToHistory(expression, result);
             
             this.currentValue = result.toString();
             this.previousValue = null;
@@ -154,6 +163,49 @@ class Calculator {
         } else {
             this.memoryIndicator.classList.remove('active');
         }
+    }
+    
+    addToHistory(expression, result) {
+        const historyItem = {
+            expression: expression,
+            result: result,
+            full: `${expression} = ${result}`
+        };
+        
+        this.history.unshift(historyItem);
+        
+        if (this.history.length > 5) {
+            this.history.pop();
+        }
+        
+        this.updateHistory();
+    }
+    
+    updateHistory() {
+        if (this.history.length === 0) {
+            this.historyList.innerHTML = '<p class="text-gray-400 text-center py-2 italic">Belum ada riwayat</p>';
+            this.historyPanel.classList.remove('show');
+        } else {
+            this.historyPanel.classList.add('show');
+            this.historyList.innerHTML = '';
+            
+            this.history.forEach((item, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'py-1.5 border-b border-gray-200 cursor-pointer transition-colors hover:text-blue-600 text-gray-600';
+                historyItem.textContent = item.full;
+                historyItem.addEventListener('click', () => {
+                    this.currentValue = item.result.toString();
+                    this.waitingForNewValue = false;
+                    this.updateDisplay();
+                });
+                this.historyList.appendChild(historyItem);
+            });
+        }
+    }
+    
+    clearHistory() {
+        this.history = [];
+        this.updateHistory();
     }
     
     updateDisplay() {

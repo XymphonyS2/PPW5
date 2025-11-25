@@ -38,6 +38,16 @@
                 <div class="text-gray-800 text-3xl font-light text-right break-all w-full" id="display">0</div>
             </div>
             
+            <div class="bg-gray-50 rounded-lg p-3 mb-3 max-h-[120px] overflow-y-auto history-panel" id="historyPanel">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-gray-800 text-sm font-medium">Riwayat Perhitungan</h3>
+                    <button class="bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 text-xs transition-colors" id="clearHistoryBtn">Hapus</button>
+                </div>
+                <div class="text-gray-600 text-xs" id="historyList">
+                    <p class="text-gray-400 text-center py-2 italic">Belum ada riwayat</p>
+                </div>
+            </div>
+
             <div class="grid grid-cols-4 gap-2">
                 <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs py-3 px-2 font-medium cursor-pointer transition-all shadow-md btn memory-btn" id="mc">MC</button>
                 <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs py-3 px-2 font-medium cursor-pointer transition-all shadow-md btn memory-btn" id="mr">MR</button>

@@ -13,6 +13,32 @@ body {
     opacity: 1;
 }
 
+.history-panel {
+    display: none;
+}
+
+.history-panel.show {
+    display: block;
+}
+
 .btn:active {
     transform: scale(0.95);
+}
+
+.history-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+.history-panel::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+}
+
+.history-panel::-webkit-scrollbar-thumb {
+    background: #2264C0;
+    border-radius: 10px;
+}
+
+.history-panel::-webkit-scrollbar-thumb:hover {
+    background: #1e5aa8;
 }

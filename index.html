@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Interaktif</title>
+    <link rel="icon" type="image/png" href="LITZBIRU.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#2264C0',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            background: linear-gradient(-45deg, #3b82f6, #2563eb, #1d4ed8, #1e40af);
+            background-size: 400% 400%;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-xs">
+        <div class="bg-white rounded-2xl p-4 shadow-2xl">
+            <div class="relative bg-gray-100 rounded-lg p-4 mb-3 min-h-[80px] flex items-center justify-end">
+                <div class="absolute top-2 left-3 text-primary-blue text-xs font-bold memory-indicator" id="memoryIndicator">M</div>
+                <div class="text-gray-800 text-3xl font-light text-right break-all w-full" id="display">0</div>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-2">
+                <div class="col-span-4 h-12"></div>
+                <div class="col-span-4 h-12"></div>
+                
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="seven">7</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="eight">8</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="nine">9</button>
+                <div></div>
+                
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="four">4</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="five">5</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="six">6</button>
+                <div></div>
+                
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="one">1</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="two">2</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="three">3</button>
+                <div class="row-span-2"></div>
+                
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn zero-btn col-span-2" id="zero">0</button>
+                <button class="bg-white hover:bg-gray-100 border border-gray-300 text-gray-800 rounded-lg text-lg py-3 font-medium cursor-pointer transition-all shadow-md btn number-btn" id="decimal">.</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
